@@ -1,8 +1,13 @@
+import os
+
 import requests
 from flask import Flask, jsonify
 
 app = Flask(__name__)
-URL_NAME_GEN = 'http://helper_app:5000/api/get_name'
+NAME_GEN = '/api/get_name'
+
+# Получение URL вспомогательного сервиса из переменной окружения
+helper_app_url = os.getenv('HELPER_APP_URL', 'http://localhost:5001')
 
 
 @app.route('/api/hello', methods=['GET'])
@@ -17,7 +22,8 @@ def index():
 
 @app.route('/api/random', methods=['GET'])
 def get_random_name():
-    r = requests.get(url=URL_NAME_GEN)
+
+    r = requests.get(url=helper_app_url + NAME_GEN)
     if r.status_code == 200:
         name = r.text
         return name

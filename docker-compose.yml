@@ -5,8 +5,8 @@ services:
       context: ./main_app
     ports:
       - "5002:5000"
-    depends_on:
-      - helper_app
+    environment:
+      - HELPER_APP_URL=http://helper_app:5000
 
   helper_app:
     build:
