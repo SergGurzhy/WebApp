@@ -1,13 +1,12 @@
-import os
-
+#import os
 import requests
 from flask import Flask, jsonify
 
 app = Flask(__name__)
 NAME_GEN = '/api/get_name'
 
-# Получение URL вспомогательного сервиса из переменной окружения
-helper_app_url = os.getenv('HELPER_APP_URL', 'http://localhost:5001')
+# helper_app_url = os.getenv('HELPER_APP_URL', 'http://localhost:5001')
+helper_app_url = 'http://helper_app:5000'
 
 
 @app.route('/api/hello', methods=['GET'])
