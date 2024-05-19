@@ -1,12 +1,10 @@
-# import os
+import os
 import requests
 from flask import Flask, jsonify
 
 app = Flask(__name__)
 NAME_GEN = '/api/get_name'
-helper_app_url = 'http://helper-app-service.default.svc.cluster.local:5000'
-# helper_app_url = 'http://helper-app-service:5000'
-
+helper_app_url = 'http://helper-app-service.default.svc.cluster.local:5000'  # Полное DNS-имя
 
 
 @app.route('/api/hello', methods=['GET'])
@@ -21,11 +19,13 @@ def index():
 
 @app.route('/api/random', methods=['GET'])
 def get_random_name():
-    r = requests.get(url=helper_app_url + NAME_GEN)
-    if r.status_code == 200:
+    try:
+        r = requests.get(url=helper_app_url + NAME_GEN)
+        r.raise_for_status()
         name = r.json().get('name')
         return name
-    return "Start your name service"
+    except requests.exceptions.RequestException as e:
+        return str(e)
 
 
 if __name__ == '__main__':
