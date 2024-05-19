@@ -10,13 +10,13 @@ services:
     networks:
       - my_network
     environment:
-      - HELPER_APP_URL=http://helper_app:5000  # URL для docker-compose
+      - HELPER_APP_URL=http://helper_app:8000  # URL for docker-compose
 
   helper_app:
     build:
       context: ./helper_app
     ports:
-      - "5001:5000"
+      - "5001:8000"
     networks:
       - my_network
 
