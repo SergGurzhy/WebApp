@@ -6,7 +6,7 @@ app = Flask(__name__)
 NAME_GEN = '/api/get_name'
 
 # Используем переменную окружения для настройки URL вспомогательного сервиса
-helper_app_url = os.getenv('HELPER_APP_URL', 'http://helper-app:5000')  # По умолчанию для docker-compose
+helper_app_url = os.getenv('HELPER_APP_URL', 'http://helper-app:8000')  # По умолчанию для docker-compose
 
 
 @app.route('/api/hello', methods=['GET'])

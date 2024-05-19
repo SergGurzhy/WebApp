@@ -19,7 +19,7 @@ spec:
         - containerPort: 5000
         env:
         - name: HELPER_APP_URL
-          value: "http://helper-app-service.default.svc.cluster.local:5000"  # URL для Kubernetes
+          value: "http://helper-app-service.default.svc.cluster.local:8000"  # URL for Kubernetes
 ---
 apiVersion: v1
 kind: Service
