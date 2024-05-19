@@ -4,7 +4,9 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 NAME_GEN = '/api/get_name'
-helper_app_url = 'http://helper-app-service.default.svc.cluster.local:5000'  # Полное DNS-имя
+
+# Используем переменную окружения для настройки URL вспомогательного сервиса
+helper_app_url = os.getenv('HELPER_APP_URL', 'http://helper-app:5000')  # По умолчанию для docker-compose
 
 
 @app.route('/api/hello', methods=['GET'])
@@ -22,7 +24,7 @@ def get_random_name():
     try:
         r = requests.get(url=helper_app_url + NAME_GEN)
         r.raise_for_status()
-        name = r.json().get('name')
+        name = r.json()
         return name
     except requests.exceptions.RequestException as e:
         return str(e)

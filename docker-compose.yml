@@ -9,6 +9,8 @@ services:
       - helper_app
     networks:
       - my_network
+    environment:
+      - HELPER_APP_URL=http://helper_app:5000  # URL для docker-compose
 
   helper_app:
     build:
@@ -20,3 +22,4 @@ services:
 
 networks:
   my_network:
+
