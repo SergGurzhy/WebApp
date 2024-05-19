@@ -2,7 +2,7 @@
 
 wait_for_services() {
     echo "Waiting for all services to start..."
-    sleep 4
+    sleep 5
 }
 
 apply_manifests() {
