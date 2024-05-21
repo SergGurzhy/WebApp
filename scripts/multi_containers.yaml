@@ -13,13 +13,20 @@ spec:
       env:
         - name: HELPER_APP_URL
           value: "http://localhost:8000"
+      volumeMounts:
+        - mountPath: /shared-data
+          name: app-data
     - name: helper-app
       image: serggurzhy/web-app-helper:latest
       ports:
         - containerPort: 8000
+      volumeMounts:
+        - mountPath: /shared-data
+          name: app-data
   volumes:
     - name: app-data
       emptyDir: {}
+
 
 
 
